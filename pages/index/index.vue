@@ -1,64 +1,68 @@
 <template>
-	<view class="container">
-		<view class="uni-padding-wrap" style="background:#fbfbfb;padding: 10rpx;">
+	<view class="container" style="padding: 10rpx;">
+		<view class="uni-padding-wrap" v-for="(diary,i) in diaryList" :key="i" style="background:#fbfbfb;padding: 10rpx;margin-bottom: 10px;">
 			<view class="uni-title uni-common-mt">
-				<text style="color: #007AFF;">{{'漩涡鸣人'}}</text>
+				<text style="color: #007AFF;">{{diary.name}}</text>
 				<br>
-				<text style="color: #666;">{{'树叶飞舞之处,火亦生生不息,火光会照亮村子,并让新生的树木发芽'}}</text>
+				<text style="color: #666;">{{diary.text}}</text>
 			</view>
 			<view class="uni-common-mt" style="padding:20rpx;">
-				<image src="../../static/image/swiper1.png" 
+				<image v-for="(x,idx) in diary.img"
+				:key="idx"
+				:src="x" 
 				mode="widthFix"
 				lazy-load="true"
 				style="width: 100%;"
 				></image>
 			</view>			
-		</view>		
-		
-		<view class="uni-padding-wrap" style="background:#fbfbfb;padding: 10rpx;">
-			<view class="uni-title uni-common-mt">
-				<text style="color: #007AFF;">{{'一品良茗'}}</text>
-				<br>
-				<text style="color: #666;">{{'一个人的一生应该是这样度过的：当他回首往事的时候，他不会因为虚度年华而悔恨，也不会因为碌碌无为而羞耻；这样，在临死的时候，他就能够说：“我的整个生命和全部精力，都已经献给世界上最壮丽的事业——为人类的解放而斗争'}}</text>
-			</view>
-			<view class="uni-common-mt" style="padding:20rpx;">
-				<image src="../../static/image/swiper3.jpg" 
-				mode="widthFix"
-				lazy-load="true"
-				style="width: 100%;"
-				></image>
-			</view>			
-		</view>		
-		
-		
+		</view>			
+		<navigator class="addDiary"
+		:url="'../createDiary/createDiary'"
+		@click="toAdd">
+		+
+		</navigator>
 	</view>
 </template>
 
 <script>
+	import * as api from '../../api/api';
 	export default {
 		data() {
 			return {
-				title: 'rich-text',
-				nodes: [{
-					name: 'div',
-					attrs: {
-						class: 'div-class',
-						style: 'line-height: 60px; color: red; text-align:center;'
-					},
-					children: [{
-						type: 'text',
-						text: 'Hello&nbsp;uni-app!'
-					}]
-				}],
-				strings: '<div style="text-align:center;"><img src="https://img-cdn-qiniu.dcloud.net.cn/uniapp/images/uni@2x.png"/></div>'
+				diaryList:[]
 			}
 		},
 		methods: {
-			toProduct(id){
-				uni.navigateTo({
-				    url: 'product/product?id='+id
-				});
-			}
+			// toAdd(){
+			// 	uni.navigateTo({
+			// 	    url: 'createDiary'
+			// 	});
+			// }
+		},
+		created(){
+			// uniCloud.callFunction({
+			// 	name: 'createDiary',
+			// 	data: {
+			// 		"name": "新增日志",
+			// 		"text": "内容",
+			// 		"img": [
+			// 			"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-babx49wzzgon92b8e7/e9885e50-182f-11eb-9dfb-6da8e309e0d8.jpg"
+			// 		]
+			// 	}
+			// }).then(res=>{
+			// 	console.log(res)
+			// 	this.diaryList = res.result.data
+			// })
+			uniCloud.callFunction({
+				name: 'getDiary',
+				data: {limit:10,offset:0}
+			}).then(res=>{
+				console.log(res)
+				this.diaryList = res.result.data
+			})
+			// api.getProject({limit:10,offset:0}).then(res => {
+			// 	console.log(res)
+			// });
 		}
 	}
 </script>
@@ -69,5 +73,8 @@
 		font-size: 14px;
 		line-height: 24px;
 	}
-	
+	.addDiary{
+		position: fixed;right: 20px;bottom: 70px;width: 40px;height: 40px;border-radius: 50%;
+		background-color: #007AFF;color: #ffffff;font-size: 20px;line-height: 40px;text-align: center;
+	}
 </style>

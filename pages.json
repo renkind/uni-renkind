@@ -7,9 +7,9 @@
 			}
 		},
 		{
-			"path": "pages/product/product",
+			"path": "pages/createDiary/createDiary",
 			"style": {
-				"navigationBarTitleText": "产品"
+				"navigationBarTitleText": "记录点滴"
 			}
 		},
 		{
@@ -21,7 +21,7 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		// "navigationBarTitleText": "奋进的任某",
+		"navigationBarTitleText": "奋进的任某",
 		"navigationBarBackgroundColor": "#007AFF",
 		"backgroundColor": "#FFFFFF"
 	},
@@ -36,13 +36,15 @@
 				"iconPath": "static/image/extui.png",
 				"selectedIconPath": "static/image/extuiHL.png",
 				"text": "点滴"
-			}, {
-				"pagePath": "pages/product/product",
-				"iconPath": "static/image/api.png",
-				"selectedIconPath": "static/image/apiHL.png",
+			}, 
+			// {
+			// 	"pagePath": "pages/product/product",
+			// 	"iconPath": "static/image/api.png",
+			// 	"selectedIconPath": "static/image/apiHL.png",
 				
-				"text": "产品"
-			}, {
+			// 	"text": "产品"
+			// }, 
+			{
 				"pagePath": "pages/me/me",
 				"iconPath": "static/image/template.png",
 				"selectedIconPath": "static/image/templateHL.png",
