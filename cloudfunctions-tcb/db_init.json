@@ -1,0 +1,35 @@
+// 在本文件中可配置云数据库初始化，数据格式见：https://uniapp.dcloud.io/uniCloud/cf-database?id=db_init
+// 编写完毕后对本文件点右键，可按配置规则创建表和添加数据
+{
+    "person": {
+        "data": [
+            {
+                "age": 26,
+                "gender": "男",
+                "is_marryed": false,
+                "job_name": "前端工程师",
+                "name": "任恺",
+                "school": "郑州大学",
+                "work_year": 4
+            }
+        ]
+    },
+    "project": {
+        "data": [
+            {
+                "begin_time": "2017-09-19",
+                "describe": "工作啦高校就业网和学生，企业信息的综合管理后台",
+                "end_time": "至今",
+                "image": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-babx49wzzgon92b8e7/e8232900-182f-11eb-899d-733ae62bed2f.png",
+                "name": "工作啦高校后台管理系统"
+            },
+            {
+                "begin_time": "2020-01-20",
+                "describe": "工作啦学生业务的小程序应用",
+                "end_time": "2020-04-20",
+                "image": "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-babx49wzzgon92b8e7/e9885e50-182f-11eb-9dfb-6da8e309e0d8.jpg",
+                "name": "工作啦人才端小程序"
+            }
+        ]
+    }
+}

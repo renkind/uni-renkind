@@ -1,6 +1,7 @@
 <template>
-	<view class="container" style="padding: 10rpx;">
-		<view class="uni-padding-wrap" v-for="(diary,i) in diaryList" :key="i" style="background:#fbfbfb;padding: 10rpx;margin-bottom: 10px;">
+	<view class="container" style="padding: 20rpx;background:#fbfbfb;">
+		<!-- <searchbar></searchbar> -->
+		<view class="uni-padding-wrap" v-for="(diary,i) in diaryList" :key="i" style="padding: 10px 0;border-top: 1px solid #d7d7d7;">
 			<view class="uni-title uni-common-mt">
 				<text style="color: #007AFF;">{{diary.name}}</text>
 				<br>
@@ -8,29 +9,35 @@
 			</view>
 			<view class="uni-common-mt" style="padding:20rpx;">
 				<image v-for="(x,idx) in diary.img"
+				v-if="x"
 				:key="idx"
 				:src="x" 
 				mode="widthFix"
 				lazy-load="true"
 				style="width: 100%;"
 				></image>
+				<view style="text-align: right;color: #999;font-size: 12px;line-height: 20px;">{{diary.add_time}}</view>
 			</view>			
 		</view>			
 		<navigator class="addDiary"
 		:url="'../createDiary/createDiary'"
-		@click="toAdd">
+		>
 		+
 		</navigator>
 	</view>
 </template>
 
 <script>
+	import searchbar from '../../components/uni-search-bar/uni-search-bar.vue';
 	import * as api from '../../api/api';
 	export default {
 		data() {
 			return {
 				diaryList:[]
 			}
+		},
+		components:{
+			searchbar
 		},
 		methods: {
 			// toAdd(){
@@ -40,19 +47,6 @@
 			// }
 		},
 		created(){
-			// uniCloud.callFunction({
-			// 	name: 'createDiary',
-			// 	data: {
-			// 		"name": "新增日志",
-			// 		"text": "内容",
-			// 		"img": [
-			// 			"https://vkceyugu.cdn.bspapp.com/VKCEYUGU-aliyun-babx49wzzgon92b8e7/e9885e50-182f-11eb-9dfb-6da8e309e0d8.jpg"
-			// 		]
-			// 	}
-			// }).then(res=>{
-			// 	console.log(res)
-			// 	this.diaryList = res.result.data
-			// })
 			uniCloud.callFunction({
 				name: 'getDiary',
 				data: {limit:10,offset:0}
@@ -63,7 +57,8 @@
 			// api.getProject({limit:10,offset:0}).then(res => {
 			// 	console.log(res)
 			// });
-		}
+		},
+		
 	}
 </script>
 
